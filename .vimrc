@@ -98,11 +98,6 @@ nnoremap <silent> ]q :cnext<CR>
 nnoremap <silent> [Q :cfirst<CR>
 nnoremap <silent> ]Q :clast<CR>
 
-noremap <Up>    <Nop>
-noremap <Down>  <Nop>
-noremap <Left>  <Nop>
-noremap <Right> <Nop>
-
 " Edit vimrc
 nmap ,v :edit $MYVIMRC<CR>
 "nmap [space]g :edit $MYGVIMRC<CR>
@@ -219,20 +214,21 @@ else
     NeoBundle 'Shougo/neocomplcache.vim'
 endif
 
-NeoBundle 'Shougo/neosnippet'
+"NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundleLazy 'Shougo/vimshell.vim', {
     \ 'depends' : [ 'Shougo/vimproc.vim' ]
     \ }
 NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/neomru.vim'
 NeoBundleLazy 'Rip-Rip/clang_complete', {
     \ 'autoload' : {
     \     'filetypes' : ['c', 'cpp'],
     \    },
     \ }
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'kana/vim-smartchr'
+"NeoBundle 'kana/vim-smartchr'
 NeoBundle 'sakuraiyuta/commentout.vim'
 NeoBundle 'itchyny/lightline.vim'
 "NeoBundle 'cohama/vim-hier'
@@ -457,7 +453,7 @@ let g:clang_user_options = '-std= c++11'
 " ----------------------------------------------------------------------------------------
 "    'kana/vim-smartchr'
 " ----------------------------------------------------------------------------------------
-inoremap <buffer> <expr> = smartchr#loop(' = ', ' == ', '=')
+"inoremap <buffer> <expr> = smartchr#loop(' = ', ' == ', '=')
 
 " ----------------------------------------------------------------------------------------
 "    'sakuraiyuta/commentout.vim'
