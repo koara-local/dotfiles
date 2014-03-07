@@ -1,0 +1,10 @@
+# User Setting
+[user]
+#    name  = 
+#    email = 
+
+# Proxy Setting
+[http]
+#    proxy =
+[https]
+#    proxy =
