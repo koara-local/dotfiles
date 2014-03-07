@@ -1,5 +1,4 @@
-[user]
-	name = Kohei Arao
-	email = koara.local.jp@gmail.com
+[include]
+    path = .gitconfig.local
 [core]
-	editor = vim
+    editor = vim
