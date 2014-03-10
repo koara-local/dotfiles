@@ -7,7 +7,7 @@ PACKAGES=( \
   tree \
   terminator \
   gcc \
-  g++ \
+  gcc-c++ \
   kernel-devel \
 )
 
