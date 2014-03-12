@@ -1,5 +1,7 @@
 #!/bin/bash
 
+function echo_error_ { echo -e "\e[1;31m$*\e[m"; }
+
 # [Vim] NeoBundle
 if [ ! -d ~/.vim/bundle/neobundle.vim ]; then
     # Check ~/.vim/bundle
@@ -7,10 +9,10 @@ if [ ! -d ~/.vim/bundle/neobundle.vim ]; then
     # Install NeoBundle
     git clone https://github.com/Shougo/neobundle.vim.git ~/.vim/bundle/neobundle.vim
     if [ $? -ne 0 ]; then
-        echo "------------------------------------------------------------------ "
-        echo " Install NeoBundle failed."
-        echo " Please check .gitconfig.local(proxy setting) or your network settings"
-        echo "------------------------------------------------------------------ "
+        echo_error_ " ----------------------------------------------------------------------- "
+        echo_error_ "  Install NeoBundle failed."
+        echo_error_ "  Please check .gitconfig.local(proxy setting) or your network settings"
+        echo_error_ " ----------------------------------------------------------------------- "
         # Exit shell
         exit 0
     fi
