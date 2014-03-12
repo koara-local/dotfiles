@@ -6,6 +6,7 @@ DOT_FILES=( \
     .bashrc \
     .vimrc \
     .gdbinit \
+    .tmux.conf \
 )
 
 for file in ${DOT_FILES[@]}
