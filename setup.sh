@@ -5,6 +5,7 @@ DOT_FILES=( \
     .gitconfig \
     .bashrc \
     .vimrc \
+    .gdbinit \
 )
 
 for file in ${DOT_FILES[@]}
