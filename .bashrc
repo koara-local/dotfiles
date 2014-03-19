@@ -5,6 +5,9 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+# User settings
+stty stop undef
+
 # User specific aliases and functions
 alias ls='ls -F --color=auto'
 alias ll='ls -l'
