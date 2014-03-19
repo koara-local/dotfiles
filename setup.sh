@@ -22,6 +22,7 @@ fi
 DOT_FILES=( \
     .vimrc \
     .gitconfig \
+    .gitattributes_global \
     .bashrc \
     .gdbinit \
     .tmux.conf \

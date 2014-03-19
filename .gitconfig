@@ -2,5 +2,7 @@
     path = .gitconfig.local
 [core]
     editor = vim
+    attributesfile = ~/.gitattributes_global
+    excludesfile = ~/.gitignore_global
 [color]
     ui = auto
