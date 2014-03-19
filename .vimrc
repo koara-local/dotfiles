@@ -14,6 +14,10 @@ set encoding=utf-8
 set list
 set listchars=tab:^\ ,trail:~
 
+"スペルチェックを有効にする(ただし日本語は除外する)
+set spelllang+=cjk
+set spell
+
 " TAB
 set expandtab
 set tabstop=4
