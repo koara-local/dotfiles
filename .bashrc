@@ -6,7 +6,8 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User settings
-stty stop undef
+stty stop  undef #C-s
+stty start undef #C-q
 
 # User specific aliases and functions
 alias ls='ls -F --color=auto'
