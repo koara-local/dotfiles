@@ -20,6 +20,7 @@ fi
 
 # Link
 DOT_FILES=( \
+    .vim \
     .vimrc \
     .gitconfig \
     .gitattributes_global \
