@@ -21,6 +21,7 @@ DOT_FILES=( \
     .gitconfig \
     .gitattributes_global \
     .bashrc \
+    .zshrc  \
     .gdbinit \
     .tmux.conf \
 )
