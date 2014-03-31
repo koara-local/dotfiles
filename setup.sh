@@ -3,9 +3,10 @@
 # エラー用 echo [赤・太字]
 function echo_error_ { echo -e "\e[1;31m$*\e[m"; }
 
-# Copy
+# [Git] ローカル設定
 if [ ! -e ~/.gitconfig.local ]; then
     # ローカル設定を退避、なければテンプレート配置
+    # TODO : includeがループする場合がある
     if [ -e ~/.gitconfig ]; then
         cp $HOME/.gitconfig $HOME/.gitconfig.local
     else
