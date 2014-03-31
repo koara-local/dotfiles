@@ -1,6 +1,7 @@
 #!/bin/bash
 
 PACKAGES=( \
+  zsh \
   meld \
   git  \
   gitg \
@@ -8,6 +9,7 @@ PACKAGES=( \
   terminator \
   gcc \
   gcc-c++ \
+  clang \
   kernel-devel \
 )
 
