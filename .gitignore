@@ -1,3 +1,4 @@
 .vim/bundle/
 .vim/.netrwhist
 .vim/.vim
+build/vim/vim/
