@@ -15,8 +15,8 @@ set list
 set listchars=tab:^\ ,trail:~
 
 "スペルチェックを有効にする(ただし日本語は除外する)
-set spelllang+=cjk
-set spell
+"set spelllang+=cjk
+"set spell
 
 " TAB
 set expandtab
@@ -170,9 +170,9 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
-augroup trailingwhitespace
-  autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-augroup END
+"augroup trailingwhitespace
+"  autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+"augroup END
 
 " ----------------------------------------------------------------------------------------
 "   neobundle
@@ -224,23 +224,20 @@ NeoBundle 'Shougo/unite-outline'
 NeoBundleLazy 'Shougo/vimshell.vim', {
     \ 'depends' : [ 'Shougo/vimproc.vim' ]
     \ }
-NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/neomru.vim'
-NeoBundleLazy 'Rip-Rip/clang_complete', {
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'sakuraiyuta/commentout.vim'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'dannyob/quickfixstatus'
+NeoBundle 'thinca/vim-visualstar'
+NeoBundle 'rhysd/clever-f.vim'
+
+NeoBundle 'osyo-manga/vim-reunions'
+NeoBundleLazy 'osyo-manga/vim-marching', {
     \ 'autoload' : {
     \     'filetypes' : ['c', 'cpp'],
     \    },
     \ }
-NeoBundle 'tpope/vim-fugitive'
-"NeoBundle 'kana/vim-smartchr'
-NeoBundle 'sakuraiyuta/commentout.vim'
-NeoBundle 'itchyny/lightline.vim'
-"NeoBundle 'cohama/vim-hier'
-NeoBundle 'dannyob/quickfixstatus'
-"NeoBundle 'thinca/vim-quickrun'
-"NeoBundle 'thinca/vim-qfreplace'
-NeoBundle 'thinca/vim-visualstar'
-NeoBundle 'rhysd/clever-f.vim'
 
 " NeoBundle Setup
 " ----------------------------------------------------------------------------------------
@@ -424,42 +421,6 @@ let g:unite_split_rule = 'botright'
 noremap [space]o <ESC>:Unite -vertical -winwidth=60 outline<Return>
 
 " ----------------------------------------------------------------------------------------
-"    'Shougo/vimshell'
-" ----------------------------------------------------------------------------------------
-" ,is: シェルを起動
-nnoremap <silent> ,is :VimShell<CR>
-" ,ipy: pythonを非同期で起動
-"nnoremap <silent> ,ipy :VimShellInteractive python<CR>
-" ,irb: irbを非同期で起動
-"nnoremap <silent> ,irb :VimShellInteractive irb<CR>
-" ,ss: 非同期で開いたインタプリタに現在の行を評価させる
-"vmap <silent> ,ss :VimShellSendString<CR>
-" 選択中に,ss: 非同期で開いたインタプリタに選択行を評価させる
-"nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
-
-" ----------------------------------------------------------------------------------------
-"    'Shougo/vimfiler'
-" ----------------------------------------------------------------------------------------
-let g:vimfiler_as_default_explorer = 1
-
-" ----------------------------------------------------------------------------------------
-"    'Rip-Rip/clang_complete'
-" ----------------------------------------------------------------------------------------
-set completeopt=menuone
-let g:clang_complete_auto = 0
-let g:clang_auto_select = 0
-let g:clang_complete_copen = 0
-let g:clang_use_library = 1
-let g:clang_library_path = '/usr/lib64/llvm'
-let g:clang_debug = 0
-let g:clang_user_options = '-std= c++11'
-
-" ----------------------------------------------------------------------------------------
-"    'kana/vim-smartchr'
-" ----------------------------------------------------------------------------------------
-"inoremap <buffer> <expr> = smartchr#loop(' = ', ' == ', '=')
-
-" ----------------------------------------------------------------------------------------
 "    'sakuraiyuta/commentout.vim'
 " ----------------------------------------------------------------------------------------
 
@@ -512,12 +473,34 @@ function! MyFilename()
 endfunction
 
 " ----------------------------------------------------------------------------------------
-"   'cohama/vim-hier'
+"    'osyo-manga/vim-marching'
 " ----------------------------------------------------------------------------------------
+" clang コマンドの設定
+let g:marching_clang_command = "/usr/bin/clang"
 
-" ----------------------------------------------------------------------------------------
-"   'dannyob/quickfixstatus'
-" ----------------------------------------------------------------------------------------
+" オプションを追加する場合
+let g:marching_clang_command_option="-std=c++11"
+
+" インクルードディレクトリのパスを設定
+let g:marching_include_paths = filter(
+    \ split(glob('/usr/include/c++/*'), '\n') +
+    \ split(glob('/usr/include/*/c++/*'), '\n') +
+    \ split(glob('/usr/include/*/'), '\n'),
+    \ 'isdirectory(v:val)')
+
+" neocomplete.vim と併用して使用する場合
+let g:marching_enable_neocomplete = 1
+
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+
+let g:neocomplete#force_omni_input_patterns.cpp =
+    \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+
+" 処理のタイミングを制御する
+" 短いほうがより早く補完ウィンドウが表示される
+set updatetime=100
 
 " ----------------------------------------------------------------------------------------
 " ----------------------------------------------------------------------------------------
