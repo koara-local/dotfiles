@@ -22,9 +22,7 @@ lua-devel \
 luajit-devel \
 cairo-devel
 
-if [! -d ./vim]; then
-    git clone https://github.com/vim-jp/vim.git
-fi
+git clone https://github.com/vim-jp/vim.git
 
 cd ./vim
 
