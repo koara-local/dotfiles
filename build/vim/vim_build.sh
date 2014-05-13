@@ -5,33 +5,15 @@ function echo_error_ { echo -e "\e[1;31m$*\e[m"; }
 function echo_success_ { echo -e "\e[1;32m$*\e[m"; }
 
 sudo yum -y install \
-ncurses-libs \
 ncurses-devel \
-gnome-libs-devel \
-libgnomeui-devel \
-gtk2-devel \
-libbonoboui-devel \
-libX11-devel \
-libXpm-devel \
-libXt-devel \
-perl-ExtUtils-Embed \
-python-devel \
-python3-devel \
-ruby-devel \
 lua-devel \
-luajit-devel \
-cairo-devel
+luajit-devel
 
 git clone https://github.com/vim-jp/vim.git
 
 cd ./vim
 
 ./configure \
---with-features=huge \
---enable-gui=gnome2 \
---enable-pythoninterp \
---enable-python3interp \
---enable-rubyinterp \
 --enable-luainterp \
 --with-luajit \
 --enable-fail-if-missing
