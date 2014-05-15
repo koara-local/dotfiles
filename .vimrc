@@ -206,7 +206,6 @@ filetype plugin indent on     " Required!
 " :NeoBundleInstall(!)    - install(update) bundles
 " :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
 
-
 " Bundle
 function! s:meet_neocomplete_requirements()
     return has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))
@@ -232,8 +231,7 @@ NeoBundle 'dannyob/quickfixstatus'
 NeoBundle 'thinca/vim-visualstar'
 NeoBundle 'rhysd/clever-f.vim'
 
-NeoBundle 'osyo-manga/vim-reunions'
-NeoBundleLazy 'osyo-manga/vim-marching', {
+NeoBundleLazy 'Rip-Rip/clang_complete', {
     \ 'autoload' : {
     \     'filetypes' : ['c', 'cpp'],
     \    },
@@ -473,34 +471,16 @@ function! MyFilename()
 endfunction
 
 " ----------------------------------------------------------------------------------------
-"    'osyo-manga/vim-marching'
+"    'Rip-Rip/clang_complete'
 " ----------------------------------------------------------------------------------------
-" clang コマンドの設定
-let g:marching_clang_command = "/usr/bin/clang"
-
-" オプションを追加する場合
-let g:marching_clang_command_option="-std=c++11"
-
-" インクルードディレクトリのパスを設定
-let g:marching_include_paths = filter(
-    \ split(glob('/usr/include/c++/*'), '\n') +
-    \ split(glob('/usr/include/*/c++/*'), '\n') +
-    \ split(glob('/usr/include/*/'), '\n'),
-    \ 'isdirectory(v:val)')
-
-" neocomplete.vim と併用して使用する場合
-let g:marching_enable_neocomplete = 1
-
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-
-let g:neocomplete#force_omni_input_patterns.cpp =
-    \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-
-" 処理のタイミングを制御する
-" 短いほうがより早く補完ウィンドウが表示される
-set updatetime=100
+set completeopt=menuone
+let g:clang_complete_auto = 0
+let g:clang_auto_select = 0
+let g:clang_complete_copen = 0
+let g:clang_use_library = 1
+let g:clang_library_path = '/usr/lib/llvm'
+let g:clang_debug = 0
+let g:clang_user_options = '-std= c++11'
 
 " ----------------------------------------------------------------------------------------
 " ----------------------------------------------------------------------------------------

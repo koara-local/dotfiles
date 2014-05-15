@@ -6,6 +6,7 @@ function echo_success_ { echo -e "\e[1;32m$*\e[m"; }
 
 sudo yum -y install \
 ncurses-devel \
+python-devel \
 lua-devel \
 luajit-devel
 
@@ -14,6 +15,8 @@ git clone https://github.com/vim-jp/vim.git
 cd ./vim
 
 ./configure \
+--enable-pythoninterp \
+--with-python-config-dir=/usr/lib/python2.7/config \
 --enable-luainterp \
 --with-luajit \
 --enable-fail-if-missing
