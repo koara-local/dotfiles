@@ -237,6 +237,9 @@ NeoBundleLazy 'Rip-Rip/clang_complete', {
     \    },
     \ }
 
+NeoBundle 'scrooloose/syntastic'
+
+
 " NeoBundle Setup
 " ----------------------------------------------------------------------------------------
 "    'Shougo/neocomplete.vim'
@@ -494,6 +497,27 @@ let g:clang_use_library = 1
 let g:clang_library_path = '/usr/lib/llvm'
 let g:clang_debug = 0
 let g:clang_user_options = '-std= c++11'
+
+" ----------------------------------------------------------------------------------------
+"    'scrooloose/syntastic'
+" ----------------------------------------------------------------------------------------
+
+let g:syntastic_check_on_open = 1
+
+let g:syntastic_enable_signs = 1
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+
+let g:syntastic_echo_current_error = 1
+let g:syntastic_auto_loc_list = 2
+let g:syntastic_enable_highlighting = 0
+
+let g:syntastic_c_config_file = '~/.clang_complete'
+let g:syntastic_cpp_config_file = '~/.clang_complete'
+
+"let g:syntastic_cpp_checkers = ['cpplint']
+"let g:syntastic_cpp_cpplint_thres = 5
+"let g:syntastic_cpp_cpplint_args = '--verbose=3'
 
 " ----------------------------------------------------------------------------------------
 " ----------------------------------------------------------------------------------------
