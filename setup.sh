@@ -16,19 +16,19 @@ fi
 
 # Link
 DOT_FILES=( \
-    .vim \
-    .vimrc \
-    .gitconfig \
-    .gitattributes_global \
-    .bashrc \
-    .zshrc  \
-    .gdbinit \
-    .tmux.conf \
+    vim \
+    vimrc \
+    gitconfig \
+    gitattributes_global \
+    bashrc \
+    zshrc  \
+    gdbinit \
+    tmux.conf \
 )
 
 for file in ${DOT_FILES[@]}
 do
-    ln -s $HOME/dotfiles/$file $HOME/$file
+    ln -s ${HOME}/dotfiles/${file} ${HOME}/.${file}
 done
 
 # [Vim] NeoBundle の設定
