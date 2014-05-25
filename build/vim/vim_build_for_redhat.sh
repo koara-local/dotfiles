@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # エラー用 echo [赤・太字]
 function echo_error_ { echo -e "\e[1;31m$*\e[m"; }
