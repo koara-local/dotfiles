@@ -217,7 +217,9 @@ else
     NeoBundle 'Shougo/neocomplcache.vim'
 endif
 
-"NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundleLazy 'Shougo/vimshell.vim', {
@@ -515,7 +517,7 @@ let g:syntastic_enable_highlighting = 0
 let g:syntastic_c_config_file = '~/.clang_complete'
 let g:syntastic_cpp_config_file = '~/.clang_complete'
 
-"let g:syntastic_cpp_checkers = ['cpplint']
+" cpplint
 "let g:syntastic_cpp_cpplint_thres = 5
 "let g:syntastic_cpp_cpplint_args = '--verbose=3'
 
