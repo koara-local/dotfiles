@@ -18,6 +18,10 @@ set listchars=tab:^\ ,trail:~
 "set spelllang+=cjk
 "set spell
 
+" number
+set number
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+
 " TAB
 "set expandtab
 set tabstop=4
@@ -226,9 +230,12 @@ NeoBundleLazy 'Shougo/vimshell.vim', {
     \ 'depends' : [ 'Shougo/vimproc.vim' ]
     \ }
 NeoBundle 'Shougo/neomru.vim'
+
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'sakuraiyuta/commentout.vim'
+NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'itchyny/lightline.vim'
+
+NeoBundle 'sakuraiyuta/commentout.vim'
 NeoBundle 'dannyob/quickfixstatus'
 NeoBundle 'thinca/vim-visualstar'
 NeoBundle 'rhysd/clever-f.vim'
@@ -440,21 +447,52 @@ noremap [space]o <ESC>:Unite -vertical -winwidth=60 outline<Return>
 "    'sakuraiyuta/commentout.vim'
 " ----------------------------------------------------------------------------------------
 
+
+" ----------------------------------------------------------------------------------------
+"    'airblade/vim-gitgutter'
+" ----------------------------------------------------------------------------------------
+highlight clear SignColumn " override default colorscheme
+let g:gitgutter_sign_column_always = 1
+
 " ----------------------------------------------------------------------------------------
 "    'itchyny/lightline.vim'
 " ----------------------------------------------------------------------------------------
+" vim-gitgutter
+let g:gitgutter_sign_added = '✚'
+let g:gitgutter_sign_modified = '➜'
+let g:gitgutter_sign_removed = '-'
+
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
+
+" lightline.vim
 let g:lightline = {
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'fugitive', 'filename' ] ]
-    \ },
-    \ 'component_function': {
-    \   'fugitive': 'MyFugitive',
-    \   'readonly': 'MyReadonly',
-    \   'modified': 'MyModified',
-    \   'filename': 'MyFilename'
-    \ },
-    \ }
+        \ 'mode_map': {'c': 'NORMAL'},
+        \ 'active': {
+        \   'left': [
+        \     ['mode', 'paste'],
+        \     ['fugitive', 'gitgutter', 'filename'],
+        \   ],
+        \   'right': [
+        \     ['lineinfo', 'syntastic'],
+        \     ['percent'],
+        \     ['charcode', 'fileformat', 'fileencoding', 'filetype'],
+        \   ]
+        \ },
+        \ 'component_function': {
+        \   'modified': 'MyModified',
+        \   'readonly': 'MyReadonly',
+        \   'fugitive': 'MyFugitive',
+        \   'filename': 'MyFilename',
+        \   'fileformat': 'MyFileformat',
+        \   'filetype': 'MyFiletype',
+        \   'fileencoding': 'MyFileencoding',
+        \   'mode': 'MyMode',
+        \   'gitgutter': 'MyGitGutter',
+        \ },
+        \ 'separator': {'left': '|', 'right': '|'},
+        \ 'subseparator': {'left': '|', 'right': '|'}
+        \ }
 
 function! MyModified()
     if &filetype == "help"
@@ -478,14 +516,54 @@ function! MyReadonly()
     endif
 endfunction
 
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? substitute(b:vimshell.current_dir,expand('~'),'~','') :
+        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
 function! MyFugitive()
     return exists('*fugitive#head') ? fugitive#head() : ''
 endfunction
 
-function! MyFilename()
-    return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-        \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
-        \ ('' != MyModified() ? ' ' . MyModified() : '')
+function! MyFileformat()
+  return winwidth('.') > 70 ? &fileformat : ''
+endfunction
+
+function! MyFiletype()
+  return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! MyFileencoding()
+  return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+function! MyMode()
+  return winwidth('.') > 60 ? lightline#mode() : ''
+endfunction
+
+function! MyGitGutter()
+  if ! exists('*GitGutterGetHunkSummary')
+        \ || ! get(g:, 'gitgutter_enabled', 0)
+        \ || winwidth('.') <= 90
+    return ''
+  endif
+  let symbols = [
+        \ g:gitgutter_sign_added . ' ',
+        \ g:gitgutter_sign_modified . ' ',
+        \ g:gitgutter_sign_removed . ' '
+        \ ]
+  let hunks = GitGutterGetHunkSummary()
+  let ret = []
+  for i in [0, 1, 2]
+    if hunks[i] > 0
+      call add(ret, symbols[i] . hunks[i])
+    endif
+  endfor
+  return join(ret, ' ')
 endfunction
 
 " ----------------------------------------------------------------------------------------
