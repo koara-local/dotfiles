@@ -28,7 +28,7 @@ DOT_FILES=( \
 
 for file in ${DOT_FILES[@]}
 do
-    ln -s ${HOME}/dotfiles/${file} ${HOME}/.${file}
+    ln -si ${HOME}/dotfiles/${file} ${HOME}/.${file}
 done
 
 # [Vim] NeoBundle の設定
