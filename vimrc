@@ -463,7 +463,7 @@ let g:gitgutter_sign_modified = '➜'
 let g:gitgutter_sign_removed = '-'
 
 let g:gitgutter_realtime = 0
-let g:gitgutter_eager = 0
+let g:gitgutter_eager = 1
 
 " lightline.vim
 let g:lightline = {
@@ -584,20 +584,20 @@ let g:clang_user_options = '-std= c++11'
 
 let g:syntastic_check_on_open = 1
 
-let g:syntastic_enable_signs = 1
-let g:syntastic_error_symbol = '✗'
+let g:syntastic_enable_signs   = 1
+let g:syntastic_error_symbol   = '✗'
 let g:syntastic_warning_symbol = '⚠'
 
-let g:syntastic_echo_current_error = 1
-let g:syntastic_auto_loc_list = 2
+let g:syntastic_echo_current_error  = 1
+let g:syntastic_auto_loc_list       = 2
 let g:syntastic_enable_highlighting = 0
 
-let g:syntastic_c_config_file = '~/.clang_complete'
+let g:syntastic_c_config_file   = '~/.clang_complete'
 let g:syntastic_cpp_config_file = '~/.clang_complete'
 
 " cpplint
-"let g:syntastic_cpp_cpplint_thres = 5
-"let g:syntastic_cpp_cpplint_args = '--verbose=3'
+let g:syntastic_cpp_cpplint_thres = 5
+let g:syntastic_cpp_cpplint_args = '--verbose=3'
 
 " ----------------------------------------------------------------------------------------
 " ----------------------------------------------------------------------------------------
