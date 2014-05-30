@@ -6,12 +6,7 @@ function echo_error_ { echo -e "\e[1;31m$*\e[m"; }
 # [Git] ローカル設定
 if [ ! -e ~/.gitconfig.local ]; then
     # ローカル設定を退避、なければテンプレート配置
-    # TODO : includeがループする場合がある
-    if [ -e ~/.gitconfig ]; then
-        cp $HOME/.gitconfig $HOME/.gitconfig.local
-    else
-        cp $HOME/dotfiles/.gitconfig.local $HOME/.gitconfig.local
-    fi
+    cp $HOME/dotfiles/.gitconfig.local $HOME/.gitconfig.local
 fi
 
 # Link
