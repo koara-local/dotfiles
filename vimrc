@@ -10,6 +10,9 @@ syntax enable
 scriptencoding utf-8
 set encoding=utf-8
 
+" 2バイト半角文字の設定
+set ambiwidth=double
+
 " タブと行末スペースを可視化
 set list
 set listchars=tab:^\ ,trail:~
