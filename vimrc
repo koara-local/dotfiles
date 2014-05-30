@@ -250,7 +250,7 @@ NeoBundleLazy 'Rip-Rip/clang_complete', {
     \ }
 
 NeoBundle 'scrooloose/syntastic'
-
+NeoBundle 'Lokaltog/vim-easymotion'
 
 " NeoBundle Setup
 " ----------------------------------------------------------------------------------------
@@ -456,11 +456,6 @@ noremap [space]o <ESC>:Unite -vertical -winwidth=60 outline<Return>
 " ----------------------------------------------------------------------------------------
 highlight clear SignColumn " override default colorscheme
 let g:gitgutter_sign_column_always = 1
-
-" ----------------------------------------------------------------------------------------
-"    'itchyny/lightline.vim'
-" ----------------------------------------------------------------------------------------
-" vim-gitgutter
 let g:gitgutter_sign_added = '✚'
 let g:gitgutter_sign_modified = '➜'
 let g:gitgutter_sign_removed = '-'
@@ -468,6 +463,9 @@ let g:gitgutter_sign_removed = '-'
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 1
 
+" ----------------------------------------------------------------------------------------
+"    'itchyny/lightline.vim'
+" ----------------------------------------------------------------------------------------
 " lightline.vim
 let g:lightline = {
         \ 'mode_map': {'c': 'NORMAL'},
@@ -584,8 +582,7 @@ let g:clang_user_options = '-std= c++11'
 " ----------------------------------------------------------------------------------------
 "    'scrooloose/syntastic'
 " ----------------------------------------------------------------------------------------
-
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 
 let g:syntastic_enable_signs   = 1
 let g:syntastic_error_symbol   = '✗'
@@ -601,6 +598,31 @@ let g:syntastic_cpp_config_file = '~/.clang_complete'
 " cpplint
 let g:syntastic_cpp_cpplint_thres = 5
 let g:syntastic_cpp_cpplint_args = '--verbose=3'
+
+" ----------------------------------------------------------------------------------------
+"    'Lokaltog/vim-easymotion'
+" ----------------------------------------------------------------------------------------
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Bi-directional find motion
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+nmap s <Plug>(easymotion-s)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-s2)
+
+" Turn on case sensitive feature
+let g:EasyMotion_smartcase = 1
+
+" Gif config
+map [space]l <Plug>(easymotion-lineforward)
+map [space]j <Plug>(easymotion-j)
+map [space]k <Plug>(easymotion-k)
+map [space]h <Plug>(easymotion-linebackward)
+
+let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
 " ----------------------------------------------------------------------------------------
 " ----------------------------------------------------------------------------------------
