@@ -3,10 +3,15 @@
 # エラー用 echo [赤・太字]
 function echo_error_ { echo -e "\e[1;31m$*\e[m"; }
 
-# [Git] ローカル設定
+# Git
+if [ ! -e ~/.gitconfig ]; then
+    # 既存の設定をバックアップ
+    mv -v $HOME/.gitconfig $HOME/.gitconfig~
+fi
+
 if [ ! -e ~/.gitconfig.local ]; then
-    # ローカル設定を退避、なければテンプレート配置
-    cp $HOME/dotfiles/.gitconfig.local $HOME/.gitconfig.local
+    # ローカル設定がなければテンプレート配置
+    cp -v $HOME/dotfiles/.gitconfig.local $HOME/.gitconfig.local
 fi
 
 # Link
