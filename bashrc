@@ -19,3 +19,5 @@ alias view='vi -R'
 if [ -e /usr/local/bin/vim ]; then
   alias vi='/usr/local/bin/vim'
 fi
+
+export TERM=xterm-256color
