@@ -31,10 +31,10 @@ set listchars=tab:^\ ,trail:~
 
 " number
 set number
-highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE
 
 " TAB
-"set expandtab
+set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
