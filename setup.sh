@@ -16,8 +16,6 @@ fi
 
 # Link
 DOT_FILES=( \
-    vim \
-    vimrc \
     gitconfig \
     gitattributes_global \
     bashrc \
@@ -30,19 +28,3 @@ for file in ${DOT_FILES[@]}
 do
     ln -si ${HOME}/dotfiles/${file} ${HOME}/.${file}
 done
-
-# [Vim] NeoBundle の設定
-if [ ! -d ~/.vim/bundle/neobundle.vim ]; then
-    # Check ~/.vim/bundle
-    [ ! -d ~/.vim/bundle] && mkdir -p ~/.vim/bundle
-    # Install NeoBundle
-    git clone https://github.com/Shougo/neobundle.vim.git ~/.vim/bundle/neobundle.vim
-    if [ $? -ne 0 ]; then
-        echo_error_ " ----------------------------------------------------------------------- "
-        echo_error_ "  Install NeoBundle failed."
-        echo_error_ "  Please check .gitconfig.local(proxy setting) or your network settings"
-        echo_error_ " ----------------------------------------------------------------------- "
-        # Exit shell
-        exit 0
-    fi
-fi
