@@ -6,6 +6,7 @@ PACKAGES=( \
   git  \
   gitg \
   tree \
+  xsel \
   terminator \
   gcc \
   gcc-c++ \
