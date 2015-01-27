@@ -18,7 +18,6 @@ fi
 DOT_FILES=( \
     gitconfig \
     gitattributes_global \
-    bashrc \
     zshrc  \
     gdbinit \
     tmux.conf \
@@ -28,3 +27,7 @@ for file in ${DOT_FILES[@]}
 do
     ln -si ${HOME}/dotfiles/${file} ${HOME}/.${file}
 done
+
+# bashrc
+ln -si ${HOME}/dotfiles/${file} ${HOME}/.${file}
+
