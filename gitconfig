@@ -1,8 +1,18 @@
 [include]
-    path = .gitconfig.local
+	path = .gitconfig.local
 [core]
-    editor = vim
-    attributesfile = ~/.gitattributes_global
-    excludesfile = ~/.gitignore_global
+	editor = vim
+	attributesfile = ~/.gitattributes_global
+	excludesfile = ~/.gitignore_global
+	pager = less -x4
 [color]
-    ui = auto
+	ui = auto
+[push]
+	default = current
+[fetch]
+	prune = true
+[alias]
+	graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+	st = status
+	co = checkout
+	sync = !${HOME}/dotfiles/bin/git-sync
