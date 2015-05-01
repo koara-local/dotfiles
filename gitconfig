@@ -4,7 +4,7 @@
 	editor = vim
 	attributesfile = ~/.gitattributes_global
 	excludesfile = ~/.gitignore_global
-	pager = less -x4
+	pager = less -x1,5
 [color]
 	ui = auto
 [push]
