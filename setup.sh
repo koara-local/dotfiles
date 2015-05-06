@@ -11,7 +11,7 @@ fi
 
 if [ ! -e ~/.gitconfig.local ]; then
     # ローカル設定がなければテンプレート配置
-    cp -v $HOME/dotfiles/.gitconfig.local $HOME/.gitconfig.local
+    cp -v $HOME/dotfiles/gitconfig.local $HOME/.gitconfig.local
 fi
 
 # Link
@@ -27,7 +27,3 @@ for file in ${DOT_FILES[@]}
 do
     ln -si ${HOME}/dotfiles/${file} ${HOME}/.${file}
 done
-
-# bashrc
-ln -si ${HOME}/dotfiles/${file} ${HOME}/.${file}
-
