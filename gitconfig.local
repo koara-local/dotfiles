@@ -1,7 +1,11 @@
 # User Setting
 [user]
-#    name  = 
-#    email = 
+#    name  =
+#    email =
+
+# git local settings
+# $ git config --local user.name ""
+# $ git config --local user.email ""
 
 # Proxy Setting
 [http]
