@@ -25,6 +25,8 @@ _git() {
 
     ln -si $(pwd)/gitconfig ~/.gitconfig
     ln -si $(pwd)/gitattributes_global ~/.gitattributes_global
+
+    popd
 }
 
 _gdb() {
