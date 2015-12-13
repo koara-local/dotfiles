@@ -1,29 +1,62 @@
-#!/bin/bash
+#!/bin/bash -xu
 
-# エラー用 echo [赤・太字]
-function echo_error_ { echo -e "\e[1;31m$*\e[m"; }
+readonly DOTDIR="$(cd $(dirname "${BASH_SOURCE}"); pwd)"
 
-# Git
-if [ ! -e ~/.gitconfig ]; then
-    # 既存の設定をバックアップ
-    mv -v $HOME/.gitconfig $HOME/.gitconfig~
-fi
+_bash() {
+    pushd ${DOTDIR}/bash
 
-if [ ! -e ~/.gitconfig.local ]; then
-    # ローカル設定がなければテンプレート配置
-    cp -v $HOME/dotfiles/gitconfig.local $HOME/.gitconfig.local
-fi
+    ln -si $(pwd)/bashrc4ubuntu ~/.bashrc
 
-# Link
-DOT_FILES=( \
-    gitconfig \
-    gitattributes_global \
-    zshrc  \
-    gdbinit \
-    tmux.conf \
-)
+    popd
+}
 
-for file in ${DOT_FILES[@]}
-do
-    ln -si ${HOME}/dotfiles/${file} ${HOME}/.${file}
-done
+_git() {
+    pushd ${DOTDIR}/git
+
+    if [ ! -e ~/.gitconfig ]; then
+        # 既存の設定をバックアップ
+        mv -v ~/.gitconfig{,_bk}
+    fi
+
+    if [ ! -e ~/.gitconfig.local ]; then
+        # ローカル設定がなければテンプレート配置
+        cp -v $(pwd)/gitconfig.local ~/.gitconfig.local
+    fi
+
+    ln -si $(pwd)/gitconfig ~/.gitconfig
+    ln -si $(pwd)/gitattributes_global ~/.gitattributes_global
+}
+
+_gdb() {
+    pushd ${DOTDIR}/gdb
+
+    ln -si $(pwd)/gdbinit ~/.gdbinit
+
+    popd
+}
+
+_tmux() {
+    pushd ${DOTDIR}/tmux
+
+    ln -si $(pwd)/tmux.conf ~/.tmux.conf
+
+    popd
+}
+
+_zsh() {
+    pushd ${DOTDIR}/zsh
+
+    ln -si $(pwd)/zshrc ~/.zshrc
+
+    popd
+}
+
+_install() {
+    _bash
+    _git
+    _gdb
+    _tmux
+    _zsh
+}
+
+_install
