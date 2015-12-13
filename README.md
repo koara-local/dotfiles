@@ -2,4 +2,8 @@
 dotfiles
 ========
 
-vimrcはdotvimへ移動しました
+# Setup
+
+```
+./setup.sh
+```
