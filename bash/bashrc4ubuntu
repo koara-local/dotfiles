@@ -105,3 +105,5 @@ export TERM=xterm-256color
 
 stty stop  undef #C-s
 stty start undef #C-q
+
+alias cdr='cd `git rev-parse --show-toplevel`'
