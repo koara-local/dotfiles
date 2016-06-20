@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Copyright (c) 2016 Kohei Arao
+# Released under the MIT license
+# http://opensource.org/licenses/mit-license.php
+
 # Get OS bit
 # 32bit : i686
 # 64bit : x86_64
