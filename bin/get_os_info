@@ -30,6 +30,9 @@ get_os_distribution() {
             # Red Hat Enterprise Linux
             distri_name="redhat"
         fi
+    elif [ -e /etc/arch-release ]; then
+        # Arch Linux
+        distri_name="arch"
     elif [ -e /etc/turbolinux-release ]; then
         # Turbolinux
         distri_name="turbol"
