@@ -2,6 +2,13 @@
 dotfiles
 ========
 
+# proxy settings
+
+```
+git config --global http.proxy http://<proxy>:<port>/
+git config --global https.proxy http://<proxy>:<port>/
+```
+
 # Setup
 
 ```
