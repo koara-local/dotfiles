@@ -5,7 +5,16 @@ readonly DOTDIR="$(cd $(dirname "${BASH_SOURCE}"); pwd)"
 _bash() {
     pushd ${DOTDIR}/bash
 
-    ln -si $(pwd)/bashrc4ubuntu ~/.bashrc
+    declare -a info=($(${DOTDIR}/bin/get_os_info))
+
+    case ${info[0]} in
+    ubuntu)
+        ln -si $(pwd)/bashrc4ubuntu ~/.bashrc
+        ;;
+    *)
+	echo "unsupported"
+	;;
+    esac
 
     popd
 }
@@ -53,12 +62,17 @@ _zsh() {
     popd
 }
 
+_vim() {
+    git submodule update --init
+}
+
 _install() {
     _bash
     _git
     _gdb
     _tmux
     _zsh
+    _vim
 }
 
 _install
