@@ -23,8 +23,13 @@ get_os_distribution() {
         # Fedra
         distri_name="fedora"
     elif [ -e /etc/redhat-release ]; then
-        # CentOS
-        distri_name="redhat"
+        if [ -e /etc/oracle-release ]; then
+            # Oracle Linux
+            distri_name="oracle"
+        else
+            # Red Hat Enterprise Linux
+            distri_name="redhat"
+        fi
     elif [ -e /etc/turbolinux-release ]; then
         # Turbolinux
         distri_name="turbol"
