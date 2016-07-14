@@ -11,9 +11,12 @@ _bash() {
     ubuntu)
         ln -si $(pwd)/bashrc4ubuntu ~/.bashrc
         ;;
+    fedora)
+        ln -si $(pwd)/bashrc4fedora ~/.bashrc
+        ;;
     *)
-	echo "unsupported"
-	;;
+        echo "unsupported"
+        ;;
     esac
 
     popd
@@ -76,3 +79,5 @@ _install() {
 }
 
 _install
+
+# vim: set ft=sh ff=unix fileencoding=utf-8 expandtab ts=4 sw=4 :
