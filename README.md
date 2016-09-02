@@ -2,6 +2,19 @@
 dotfiles
 ========
 
+## Basic Installation
+### via curl
+
+```
+curl -L https://raw.github.com/koara-local/dotfiles/master/tools/install.sh | sh
+```
+
+### via wget
+
+```
+wget https://raw.github.com/koara-local/dotfiles/master/tools/install.sh -O - | sh
+```
+
 # proxy settings
 
 ```
