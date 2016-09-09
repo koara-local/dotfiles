@@ -1,0 +1,223 @@
+[[plugins]]
+repository = 'Shougo/neobundle.vim'
+fetch = 1
+
+[[plugins]]
+repository = 'Shougo/vimproc.vim'
+    [plugins.build]
+    windows = 'tools\\update-dll-mingw'
+    cygwin  = 'make -f make_cygwin.mak'
+    mac     = 'make -f make_mac.mak'
+    unix    = 'make -f make_unix.mak'
+
+[[plugins]]
+repository = 'altercation/vim-colors-solarized'
+
+[[plugins]]
+repository = 'rhysd/accelerated-jk'
+
+[[plugins]]
+repository = 'jiangmiao/auto-pairs'
+
+[[plugins]]
+repository = 'terryma/vim-expand-region'
+
+# text-object
+## - base
+[[plugins]]
+repository = 'kana/vim-textobj-user'
+
+## - underscore : a_ i_
+[[plugins]]
+repository = 'kana/vim-textobj-underscore'
+
+# complete
+[[plugins]]
+repository = 'Shougo/neocomplete.vim'
+depends    = ['Shougo/neoinclude.vim', 'Shougo/neco-syntax', 'Shougo/context_filetype.vim']
+insert     = 1
+
+[[plugins]]
+repository = 'Shougo/neosnippet.vim'
+depends    = ['Shougo/neosnippet-snippets', 'Shougo/context_filetype.vim']
+insert     = 1
+filetypes  = 'snippet'
+unite_sources = ['neosnippet', 'neosnippet/user', 'neosnippet/runtime']
+
+# Unite
+[[plugins]]
+repository = 'Shougo/unite.vim'
+depends    = 'Shougo/neomru.vim'
+    [plugins.commands]
+    name     = 'Unite'
+    complete = 'customlist,unite#complete_source'
+
+[[plugins]]
+repository = 'Shougo/unite-outline'
+
+[[plugins]]
+repository = 'ujihisa/unite-locate'
+
+# File tree view
+[[plugins]]
+repository = 'scrooloose/nerdtree'
+    [plugins.commands]
+    name = 'NERDTreeToggle'
+
+# file swap
+[[plugins]]
+repository = 'koara-local/next-alter.vim'
+filetypes  =  ['c', 'cpp']
+
+# COMMENT OUT
+[[plugins]]
+repository = 'tyru/caw.vim'
+mappings = '<Plug>'
+
+# GIT
+[[plugins]]
+repository = 'tpope/vim-fugitive'
+
+[[plugins]]
+repository = 'airblade/vim-gitgutter'
+
+[[plugins]]
+repository = 'rhysd/committia.vim'
+
+[[plugins]]
+repository = 'cohama/agit.vim'
+
+[[plugins]]
+repository = 'AndrewRadev/gapply.vim'
+
+# indent guide
+[[plugins]]
+repository = 'nathanaelkane/vim-indent-guides'
+
+# QUICKFIX
+[[plugins]]
+repository = 'dannyob/quickfixstatus'
+
+[[plugins]]
+repository = 'cohama/vim-hier'
+
+# SEARCH
+[[plugins]]
+repository = 'thinca/vim-visualstar'
+mappings = [['x', '*'], ['x' , '#'], ['x', 'g*'], ['x', 'g#']]
+
+[[plugins]]
+repository = 'haya14busa/incsearch.vim'
+
+# SYNTAX CHECK
+[[plugins]]
+repository = 'scrooloose/syntastic'
+
+# STATUS LINE
+[[plugins]]
+repository = 'itchyny/lightline.vim'
+
+# QuickRun
+[[plugins]]
+repository = 'thinca/vim-quickrun'
+
+# C/C++
+[[plugins]]
+repository = 'justmao945/vim-clang'
+filetypes  =  ['c', 'cpp']
+
+# Go
+[[plugins]]
+repository = 'fatih/vim-go'
+
+# QML
+[[plugins]]
+repository = 'peterhoeg/vim-qml'
+filetypes  = 'qml'
+
+# JSON
+[[plugins]]
+repository = 'elzr/vim-json'
+filetypes  = 'json'
+
+# Open CL (*.cl)
+[[plugins]]
+repository = 'frasercrmck/opencl.vim'
+filetypes  = 'opencl'
+
+# Open GL
+[[plugins]]
+repository = 'koara-local/opengl.vim'
+lazy = 1
+
+# wayland
+[[plugins]]
+repository = 'koara-local/vim-wayland'
+
+# GLSL
+[[plugins]]
+repository = 'beyondmarc/glsl.vim'
+
+# python
+[[plugins]]
+repository = 'davidhalter/jedi-vim'
+filetypes  = 'python'
+    [plugins.build]
+    others = 'git submodule update --init'
+
+# Rust
+[[plugins]]
+repository = 'rust-lang/rust.vim'
+
+# Markdown
+[[plugins]]
+repository = 'kannokanno/previm'
+filetypes  = 'markdown'
+
+[[plugins]]
+repository = 'tyru/open-browser.vim'
+filetypes  = 'markdown'
+
+[[plugins]]
+repository = 'dhruvasagar/vim-table-mode'
+filetypes  = 'markdown'
+
+# JavaScript + AltJS
+[[plugins]]
+repository = 'othree/javascript-libraries-syntax.vim'
+filetypes  = ['javascript', 'coffee', 'typescript']
+
+[[plugins]]
+repository = 'jason0x43/vim-js-indent'
+filetypes  = ['javascript', 'typescript']
+
+# JavaScript only
+[[plugins]]
+repository = 'marijnh/tern_for_vim'
+filetypes  = 'javascript'
+    [plugins.build]
+    others = 'npm install'
+
+# CoffeeScript
+[[plugins]]
+repository = 'kchmck/vim-coffee-script'
+filetypes  = 'coffee'
+
+# TypeScript
+[[plugins]]
+repository = 'leafgarland/typescript-vim'
+filetypes  = 'typescript'
+
+[[plugins]]
+repository = 'Quramy/tsuquyomi'
+filetypes  = 'typescript'
+
+# TOML
+[[plugins]]
+repository = 'cespare/vim-toml'
+filetypes  = 'toml'
+
+# Jade templetes
+[[plugins]]
+repository = 'digitaltoad/vim-jade'
+filetypes  = 'jade'

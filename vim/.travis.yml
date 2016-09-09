@@ -1,0 +1,4 @@
+language: bash
+
+script:
+    - curl -L https://raw.github.com/koara-local/dotvim/master/tools/install.sh | sh

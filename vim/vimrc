@@ -1,0 +1,436 @@
+" ==============================================================================
+"    _  __(_)_ _  ________
+"  _| |/ / /  ' \/ __/ __/
+" (_)___/_/_/_/_/_/  \__/
+" ------------------------------------------------------------------------------
+" AA Generate by http://patorjk.com/software/taag / Font : Small Slant
+" ------------------------------------------------------------------------------
+"  NOTE
+" ------------------------------------------------------------------------------
+"  ステータスバーの色がおかしい場合は、*shrcに以下を追加してください
+"  export TERM=xterm-256color
+" ------------------------------------------------------------------------------
+"  折りたたみは以下で操作できます
+"  zo 開く, zc 閉じる
+" ------------------------------------------------------------------------------
+"  ローカル設定は $HOME/.vimrc.local 内に追記してください
+" ==============================================================================
+" ------------------------------------------------------------------------------
+" 起動設定 {{{
+" ------------------------------------------------------------------------------
+" tiny と small では これ以上 vimrc を読み込まない
+if !1 | finish | endif
+" ------------------------------------------------------------------------------
+if has('vim_starting')
+  " syntax hilight
+  syntax enable
+endif
+" ------------------------------------------------------------------------------
+function! s:get_SID()
+  return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeget_SID$')
+endfunction
+let s:SID = s:get_SID()
+delfunction s:get_SID
+" ------------------------------------------------------------------------------
+" Vimrc augroup
+augroup MyVimrc
+  autocmd!
+augroup END
+command! -nargs=* Autocmd   autocmd MyVimrc <args>
+command! -nargs=* AutocmdFT autocmd MyVimrc FileType <args>
+" ------------------------------------------------------------------------------
+" }}}
+" ------------------------------------------------------------------------------
+" ==============================================================================
+" ------------------------------------------------------------------------------
+" 基本設定 {{{
+" ------------------------------------------------------------------------------
+" 高速ターミナル接続を行う
+set ttyfast
+" コマンド実行中は再描画しない
+set lazyredraw
+
+" タブと行末スペースを可視化
+set list
+" 不可視文字の表示形式
+set listchars=tab:\|\ ,trail:~
+
+" 印字不可能文字を16進数で表示
+set display=uhex
+
+" 2バイト半角文字の設定
+if exists('&ambiwidth')
+  set ambiwidth=double
+endif
+
+"スペルチェックを有効にする(ただし日本語は除外する)
+"set spelllang+=cjk
+"set spell
+
+" マウス有効化
+set mouse=a
+
+" クリップボード有効化(Linux向け)
+set clipboard=unnamedplus
+
+" number
+set number
+
+" TAB
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set smarttab
+
+" INDENT
+set autoindent
+set smartindent
+
+AutocmdFT * set formatoptions-=ro
+
+" 折り返しでインデントを保持
+if exists('+breakindent')
+  set breakindent
+endif
+
+" BACKSPACE
+set backspace=indent,eol,start
+
+" Status Line
+set laststatus=2
+
+" tabline
+set showtabline=2
+
+" SCROLL
+set scrolloff=5
+
+" 更新時自動再読込み
+set autoread
+" 編集中でも他のファイルを開けるようにする
+set hidden
+" スワップファイルを作らない
+set noswapfile
+
+" SEARCH
+set ignorecase smartcase
+set incsearch
+set hlsearch
+
+" matchpairs
+set matchpairs& matchpairs+=<:>
+
+" command mode
+set wildmenu wildmode=longest:full,full
+
+" 折りたたみ
+set foldenable
+set foldcolumn=1 " 左側に折りたたみガイド表示
+" set foldmethod=indent " 折畳の判別
+set foldtext=Mopp_fold() " 折りたたみ時の表示設定
+set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo " fold内に移動すれば自動で開く
+
+function! Mopp_fold()
+    let line = ' ' . substitute(getline(v:foldstart), '^\s*', '', '')
+    for i in range(&shiftwidth * v:foldlevel - 2)
+        let line = '-' . line
+    endfor
+    let line = '+' . line
+
+    let tail = printf('[ %2d Lines Lv%02d ] --- ', (v:foldend - v:foldstart + 1), v:foldlevel)
+
+    let space_size = (winwidth(0) - &foldcolumn - strdisplaywidth(line . tail) - 1) - ((&number) ? max([&numberwidth, len(line('$'))]) : 0)
+
+    return printf('%s%' . space_size . 'S%s', line, '', tail)
+endfunction
+
+" ビープの設定
+" ビープ音すべてを無効にする
+set visualbell t_vb=
+" エラーメッセージの表示時にビープを鳴らさない"
+set noerrorbells
+
+" Vimを終了してもUndo
+if has('persistent_undo')
+  set undofile
+  set undodir=./.vimundo,~/.vim/undo
+endif
+
+" ファイルを開いた時にカーソルを前回編集時の位置に移動
+augroup previousline
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+
+" tmux 用の設定
+"256 bitカラーモード(for tmux)
+if !has('gui_running') && $TMUX !=# ''
+  set t_Co=256
+endif
+
+" エコーエリアに補完時のメッセージを表示させない
+" https://github.com/vim-jp/issues/issues/305
+if (v:version > 704 || (v:version == 704 && has('patch314')))
+  set shortmess=c
+endif
+
+" }}}
+" ------------------------------------------------------------------------------
+" keybind 設定 {{{
+" ------------------------------------------------------------------------------
+" set paste
+nnoremap <silent> ,p :<C-u>set paste!<CR>
+      \:<C-u>echo("Toggle PasteMode => " . (&paste == 0 ? "Off" : "On"))<CR>
+
+" KEYMAP
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
+
+nnoremap <silent> [t :tabprevious<CR>
+nnoremap <silent> ]t :tabnext<CR>
+nnoremap <silent> [T :tabfirst<CR>
+nnoremap <silent> ]T :tablast<CR>
+nnoremap <silent> [1 :tabnext1<CR>
+nnoremap <silent> [2 :tabnext2<CR>
+nnoremap <silent> [3 :tabnext3<CR>
+nnoremap <silent> [4 :tabnext4<CR>
+nnoremap <silent> [5 :tabnext5<CR>
+nnoremap <silent> [6 :tabnext6<CR>
+nnoremap <silent> [7 :tabnext7<CR>
+nnoremap <silent> [8 :tabnext8<CR>
+nnoremap <silent> [9 :tabnext9<CR>
+
+nnoremap <silent> [q :cprevious<CR>
+nnoremap <silent> ]q :cnext<CR>
+nnoremap <silent> [Q :cfirst<CR>
+nnoremap <silent> ]Q :clast<CR>
+
+" Edit vimrc
+nnoremap ,v :edit $MYVIMRC<CR>
+
+" Ctrl + j, k, h, lでウインドウを移動できるように
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+nnoremap <C-Down>  <C-w>j
+nnoremap <C-Up>    <C-w>k
+nnoremap <C-Left>  <C-w>h
+nnoremap <C-Right> <C-w>l
+
+" no one is really happy until you have this shortcuts
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
+cnoreabbrev W w
+cnoreabbrev Q q
+
+" 連続インデント
+vnoremap < <gv
+vnoremap > >gv
+
+" clear search highlight
+nnoremap ,, :<C-u>nohlsearch<CR>
+
+" }}}
+" ------------------------------------------------------------------------------
+" その他 autocmd定義 {{{
+" ------------------------------------------------------------------------------
+" AUTO CURSOR LINE {{{
+" ------------------------------------------------------------------------------
+" 'cursorline' を必要な時にだけ有効にする
+" http://d.hatena.ne.jp/thinca/20090530/1243615055
+" を少し改造、number の highlight は常に有効にする
+augroup vimrc-auto-cursorline
+  autocmd!
+  autocmd CursorMoved,CursorMovedI * call s:auto_cursorline('CursorMoved')
+  autocmd CursorHold,CursorHoldI * call s:auto_cursorline('CursorHold')
+  autocmd WinEnter * call s:auto_cursorline('WinEnter')
+  autocmd WinLeave * call s:auto_cursorline('WinLeave')
+  autocmd BufEnter * call s:auto_cursorline('WinEnter')
+  autocmd BufLeave * call s:auto_cursorline('WinLeave')
+
+  setlocal cursorline
+  hi clear CursorLine
+
+  let s:cursorline_lock = 0
+  function! s:auto_cursorline(event)
+    if a:event ==# 'WinEnter'
+      setlocal cursorline
+      hi CursorLine term=underline cterm=underline guibg=Grey90
+      let s:cursorline_lock = 2
+    elseif a:event ==# 'WinLeave'
+      setlocal nocursorline
+      hi clear CursorLine
+    elseif a:event ==# 'CursorMoved'
+      if s:cursorline_lock
+        if 1 < s:cursorline_lock
+          let s:cursorline_lock = 1
+        else
+          hi clear CursorLine
+          let s:cursorline_lock = 0
+        endif
+      endif
+    elseif a:event ==# 'CursorHold'
+      hi CursorLine term=underline cterm=underline guibg=Grey90
+      let s:cursorline_lock = 1
+    endif
+  endfunction
+augroup END
+" }}}
+" ------------------------------------------------------------------------------
+" OPEN/CLOSE QUICKFIX WINDOW SETTINGS {{{
+" ------------------------------------------------------------------------------
+nnoremap <silent> <Space>q :<C-U>QFix<CR>
+
+" toggles the quickfix window.
+" http://vim.wikia.com/wiki/Toggle_to_open_or_close_the_quickfix_window
+command -bang -nargs=? QFix call QFixToggle(<bang>0)
+function! QFixToggle(forced)
+  if exists("g:qfix_win") && a:forced == 0
+    cclose
+    unlet g:qfix_win
+  else
+    botright copen 10
+    let g:qfix_win = bufnr("$")
+  endif
+endfunction
+
+Autocmd QuickfixCmdPost vimgrep,grep botright copen
+Autocmd QuickfixCmdPost make call s:open_quickfix_window()
+function! s:open_quickfix_window()
+  silent redraw!
+  if (len(getqflist()) == 1)
+    cclose
+  else
+    botright copen 10
+    let g:qfix_win = bufnr("$")
+  endif
+endfunction
+
+" auto close
+" http://qiita.com/hidetzu/items/97b11c06e3e3a6c6d699
+function s:QuickFix_Exit_OnlyWindow()
+  if winnr('$') == 1
+    if (getbufvar(winbufnr(0), '&buftype')) == 'quickfix'
+      quit
+    endif
+  endif
+endfunction
+Autocmd WinEnter * call s:QuickFix_Exit_OnlyWindow()
+" }}}
+" ------------------------------------------------------------------------------
+" C++ STL filetype settings {{{
+" ------------------------------------------------------------------------------
+" http://d.hatena.ne.jp/osyo-manga/20131219/1387465034
+let $CPP_STDLIB = "/usr/include/c++"
+augroup vimrc-set_filetype_cpp_stdlib
+    autocmd!
+    " $CPP_STDLIB よりも下の階層のファイルが開かれて
+    " filetype が設定されていない場合に filetype=cpp を設定する
+    autocmd BufReadPost $CPP_STDLIB/* if empty(&filetype) | set filetype=cpp | endif
+augroup END
+" }}}
+" ------------------------------------------------------------------------------
+" }}}
+" ------------------------------------------------------------------------------
+" ==============================================================================
+" ------------------------------------------------------------------------------
+" neobundle settings {{{
+" ------------------------------------------------------------------------------
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+let g:neobundle#types#git#clone_depth = 1
+
+if neobundle#load_cache(
+      \ expand('~/dotfiles/vim/vimrc'),
+      \ expand('~/dotfiles/vim/neobundle.toml'),
+      \ expand('~/.vimrc.bundle.local'))
+  echo("update neobundle cache")
+
+  " Load plugins
+  call neobundle#load_toml('~/dotfiles/vim/neobundle.toml')
+
+  " load local neobundle settings
+  if filereadable(expand('~/.vimrc.bundle.local'))
+    source ~/.vimrc.bundle.local
+  endif
+
+  " save cache
+  NeoBundleSaveCache
+endif
+" }}}
+" ------------------------------------------------------------------------------
+" neobundle plugin settings {{{
+" ------------------------------------------------------------------------------
+if filereadable(expand('~/dotfiles/vim/vimrc_plugin'))
+  source ~/dotfiles/vim/vimrc_plugin
+endif
+" }}}
+" ------------------------------------------------------------------------------
+" neobundle end {{{
+" ------------------------------------------------------------------------------
+
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256
+
+call neobundle#end()
+
+filetype plugin indent on     " Required!
+
+NeoBundleCheck
+" }}}
+" ------------------------------------------------------------------------------
+" local other vimrc settings {{{
+" ------------------------------------------------------------------------------
+if filereadable(expand('~/.vimrc.local'))
+  source ~/.vimrc.local
+endif
+" }}}
+" ------------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
+" colorscheme / highlight 設定 {{{
+" ------------------------------------------------------------------------------
+if has('syntax')
+  set background=dark
+  colorscheme solarized
+
+  hi clear CursorLine
+  hi CursorLineNr cterm=NONE ctermfg=3 ctermbg=NONE
+
+  hi SpecialKey cterm=NONE ctermfg=239      ctermbg=NONE
+  hi LineNr     cterm=NONE ctermfg=DarkGrey ctermbg=NONE
+  hi SignColumn cterm=NONE ctermfg=DarkGrey ctermbg=NONE
+  hi Folded     cterm=NONE ctermfg=RED      ctermbg=NONE
+  hi FoldColumn cterm=NONE ctermfg=DarkBlue ctermbg=NONE
+  hi MatchParen cterm=bold ctermfg=39       ctermbg=NONE
+  hi Search     cterm=NONE ctermfg=0        ctermbg=220
+
+" 全角スペースの表示
+  function! ZenkakuSpace()
+    highlight ZenkakuSpace cterm=underline ctermfg=darkgrey ctermbg=238 gui=underline guifg=darkgrey
+  endfunction
+
+  augroup ZenkakuSpace
+    autocmd!
+    autocmd ColorScheme * call ZenkakuSpace()
+    autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
+  augroup END
+  call ZenkakuSpace()
+endif
+" }}}
+" ------------------------------------------------------------------------------
+" ==============================================================================
+" vim: set ft=vim fdm=marker ff=unix fileencoding=utf-8 expandtab ts=2 sw=2 :
+" ==============================================================================
