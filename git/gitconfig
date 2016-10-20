@@ -16,3 +16,4 @@
 	st = status
 	co = checkout
 	sync = !${HOME}/dotfiles/bin/git-sync
+	ignore = "!f() { echo $1 >> \"${GIT_PREFIX}.gitignore\";  }; f"
