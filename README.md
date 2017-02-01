@@ -2,6 +2,10 @@
 dotfiles
 ========
 
+## Setup GitHub SSH Settings
+
+[koara-local/setup_github](https://github.com/koara-local/setup_github)
+
 ## Basic Installation
 ### via curl
 
