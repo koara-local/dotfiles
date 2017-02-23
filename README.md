@@ -6,6 +6,13 @@ dotfiles
 
 [koara-local/proxy_settings](https://github.com/koara-local/proxy_settings)
 
+or
+
+```
+git config --global http.proxy http://<proxy>:<port>/
+git config --global https.proxy http://<proxy>:<port>/
+```
+
 ## Setup GitHub SSH Settings
 
 [koara-local/setup_github](https://github.com/koara-local/setup_github)
@@ -21,13 +28,6 @@ curl -L https://raw.github.com/koara-local/dotfiles/master/tools/install.sh | sh
 
 ```
 wget https://raw.github.com/koara-local/dotfiles/master/tools/install.sh -O - | sh
-```
-
-# proxy settings
-
-```
-git config --global http.proxy http://<proxy>:<port>/
-git config --global https.proxy http://<proxy>:<port>/
 ```
 
 # Setup
