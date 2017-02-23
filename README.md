@@ -2,13 +2,13 @@
 dotfiles
 ========
 
-## Setup GitHub SSH Settings
-
-[koara-local/setup_github](https://github.com/koara-local/setup_github)
-
 ## Setup Proxy Settings
 
 [koara-local/proxy_settings](https://github.com/koara-local/proxy_settings)
+
+## Setup GitHub SSH Settings
+
+[koara-local/setup_github](https://github.com/koara-local/setup_github)
 
 ## Basic Installation
 ### via curl
