@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # Copyright (c) 2016 Kohei Arao
-# Released under the MIT license
-# http://opensource.org/licenses/mit-license.php
+# https://github.com/koara-local/dotfiles/edit/master/bin/get_os_info
+# Released under the Unlicense
+# http://unlicense.org/
 
 # Get OS bit
 # 32bit : i686
