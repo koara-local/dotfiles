@@ -6,6 +6,10 @@ dotfiles
 
 [koara-local/setup_github](https://github.com/koara-local/setup_github)
 
+## Setup Proxy Settings
+
+[koara-local/proxy_settings](https://github.com/koara-local/proxy_settings)
+
 ## Basic Installation
 ### via curl
 
