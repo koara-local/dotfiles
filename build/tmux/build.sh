@@ -6,6 +6,10 @@ fi
 
 cd tmux
 
+# checkout latest tag
+#git checkout $(git tag | sort -V | tail -n 1)
+git checkout 2.2
+
 sh autogen.sh
 
 ./configure
