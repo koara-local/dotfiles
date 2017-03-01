@@ -1,4 +1,136 @@
 " ==============================================================================
+" vim-fugitive {{{
+" ==============================================================================
+if neobundle#tap('vim-fugitive')
+
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" vim-js-indent {{{
+" ==============================================================================
+if neobundle#tap('vim-js-indent')
+
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" accelerated-jk {{{
+" ==============================================================================
+if neobundle#tap('accelerated-jk')
+
+" jkを加速する
+" conservative deceleration
+let g:accelerated_jk_enable_deceleration = 1
+nmap j <Plug>(accelerated_jk_gj)
+nmap k <Plug>(accelerated_jk_gk)
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" vim-coffee-script {{{
+" ==============================================================================
+if neobundle#tap('vim-coffee-script')
+
+" vimにcoffeeファイルタイプを認識させる
+au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
+" インデントを設定
+autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" neobundle.vim {{{
+" ==============================================================================
+if neobundle#tap('neobundle.vim')
+
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" open-browser.vim {{{
+" ==============================================================================
+if neobundle#tap('open-browser.vim')
+
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" vim-visualstar {{{
+" ==============================================================================
+if neobundle#tap('vim-visualstar')
+
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" quickfixstatus {{{
+" ==============================================================================
+if neobundle#tap('quickfixstatus')
+
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" jedi-vim {{{
+" ==============================================================================
+if neobundle#tap('jedi-vim')
+
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" incsearch.vim {{{
+" ==============================================================================
+if neobundle#tap('incsearch.vim')
+
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" vim-indent-guides {{{
+" ==============================================================================
+if neobundle#tap('vim-indent-guides')
+
+" インデントの深さに色を付ける
+let g:indent_guides_start_level=2
+let g:indent_guides_auto_colors=0
+let g:indent_guides_enable_on_vim_startup=0
+let g:indent_guides_color_change_percent=20
+let g:indent_guides_guide_size=1
+let g:indent_guides_space_guides=1
+
+hi IndentGuidesOdd  ctermbg=235
+hi IndentGuidesEven ctermbg=237
+au FileType coffee,ruby,javascript,python IndentGuidesEnable
+nmap <silent><Leader>ig <Plug>IndentGuidesToggle
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" vim-colors-solarized {{{
+" ==============================================================================
+if neobundle#tap('vim-colors-solarized')
+
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
 " neocomplete.vim {{{
 " ==============================================================================
 if neobundle#tap('neocomplete.vim')
@@ -111,27 +243,208 @@ call neobundle#untap()
 endif
 " }}}
 " ==============================================================================
-" vim-qml {{{
+" next-alter.vim {{{
 " ==============================================================================
-if neobundle#tap('vim-qml')
+if neobundle#tap('next-alter.vim')
+
+let g:next_alter#do_not_create_not_exist_pair_extension = 2
+" key is file extension, value is alternate file extension.
+let g:next_alter#pair_extension = {
+            \ 'c'   : [ 'h' ],
+            \ 'C'   : [ 'H' ],
+            \ 'cc'  : [ 'h' ],
+            \ 'CC'  : [ 'H', 'h'],
+            \ 'cpp' : [ 'h', 'hpp' ],
+            \ 'CPP' : [ 'H', 'HPP' ],
+            \ 'cxx' : [ 'h', 'hpp' ],
+            \ 'CXX' : [ 'H', 'HPP' ],
+            \ 'h'   : [ 'c', 'cpp', 'cxx' ],
+            \ 'H'   : [ 'C', 'CPP', 'CXX' ],
+            \ 'hpp' : [ 'cpp', 'cxx'],
+            \ 'HPP' : [ 'CPP', 'CXX'],
+            \ }
+
+" this list shows search directory to find alternate file.
+let g:next_alter#search_dir = [ '.' , '..', './include', '../include' ]
+
+" this is used when it opens alternate file buffer.
+let g:next_alter#open_option = 'vertical topleft'
+
+" key mapping
+nnoremap <silent> <Space>a :<C-u>OpenNAlter<CR>
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" opencl.vim {{{
+" ==============================================================================
+if neobundle#tap('opencl.vim')
 
 
 call neobundle#untap()
 endif
 " }}}
 " ==============================================================================
-" nerdtree {{{
+" vim-json {{{
 " ==============================================================================
-if neobundle#tap('nerdtree')
+if neobundle#tap('vim-json')
 
-augroup my_nerdtree_settings
-    autocmd!
-    " key mappings
-    nmap <silent> <Space>F :<C-u>NERDTreeToggle<CR>
-    " auto close when last buffer is NERDTree
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&
-            \ b:NERDTreeType == "primary") | q | endif
-augroup END
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" vim-go {{{
+" ==============================================================================
+if neobundle#tap('vim-go')
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods   = 1
+let g:go_highlight_structs   = 1
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" unite-outline {{{
+" ==============================================================================
+if neobundle#tap('unite-outline')
+
+nnoremap <silent> <Space>o :<C-u>Unite -wrap -vertical -no-quit outline<CR>
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" vim-gitgutter {{{
+" ==============================================================================
+if neobundle#tap('vim-gitgutter')
+
+let g:gitgutter_sign_column_always = 1
+let g:gitgutter_sign_added = '✚'
+let g:gitgutter_sign_modified = '➜'
+let g:gitgutter_sign_removed = '_'
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 1
+let g:gitgutter_max_signs = 2000
+let g:gitgutter_escape_grep = 1
+let g:gitgutter_highlight_lines = 0
+
+nnoremap <silent> [h :<C-u>GitGutterPrevHunk<CR>
+nnoremap <silent> ]h :<C-u>GitGutterNextHunk<CR>
+nnoremap <silent> gA :<C-u>GitGutterStageHunk<CR>
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" vim-clang {{{
+" ==============================================================================
+if neobundle#tap('vim-clang')
+
+" disable auto completion for vim-clang
+let g:clang_auto = 0
+" default 'longest' can not work with neocomplete
+let g:clang_c_completeopt   = 'menuone'
+let g:clang_cpp_completeopt = 'menuone'
+
+function! s:get_latest_clang(search_path)
+    let l:filelist = split(globpath(a:search_path, 'clang-*'), '\n')
+    let l:clang_exec_list = []
+    for l:file in l:filelist
+        if l:file =~ '^.*clang-\d\.\d$'
+            call add(l:clang_exec_list, l:file)
+        endif
+    endfor
+    if len(l:clang_exec_list)
+        return reverse(l:clang_exec_list)[0]
+    else
+        return 'clang'
+    endif
+endfunction
+
+function! s:get_latest_clang_format(search_path)
+    let l:filelist = split(globpath(a:search_path, 'clang-format-*'), '\n')
+    let l:clang_exec_list = []
+    for l:file in l:filelist
+        if l:file =~ '^.*clang-format-\d\.\d$'
+            call add(l:clang_exec_list, l:file)
+        endif
+    endfor
+    if len(l:clang_exec_list)
+        return reverse(l:clang_exec_list)[0]
+    else
+        return 'clang-format'
+    endif
+endfunction
+
+let g:clang_exec = s:get_latest_clang('/usr/bin')
+let g:clang_format_exec = s:get_latest_clang_format('/usr/bin')
+
+let g:clang_c_options = '-std=c11'
+let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" gapply.vim {{{
+" ==============================================================================
+if neobundle#tap('gapply.vim')
+
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" tern_for_vim {{{
+" ==============================================================================
+if neobundle#tap('tern_for_vim')
+
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" vim-wayland {{{
+" ==============================================================================
+if neobundle#tap('vim-wayland')
+
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" vim-table-mode {{{
+" ==============================================================================
+if neobundle#tap('vim-table-mode')
+
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" committia.vim {{{
+" ==============================================================================
+if neobundle#tap('committia.vim')
+
+let g:committia_hooks = {}
+function! g:committia_hooks.edit_open(info)
+    " Additional settings
+    setlocal spell
+
+    " If no commit message, start with insert mode
+    if a:info.vcs ==# 'git' && getline(1) ==# ''
+        startinsert
+    end
+
+    " Scroll the diff window from insert mode
+    " Map <C-n> and <C-p>
+    imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
+    imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
+
+endfunction
 
 call neobundle#untap()
 endif
@@ -170,168 +483,10 @@ call neobundle#untap()
 endif
 " }}}
 " ==============================================================================
-" vim-jade {{{
-" ==============================================================================
-if neobundle#tap('vim-jade')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" vim-coffee-script {{{
-" ==============================================================================
-if neobundle#tap('vim-coffee-script')
-
-" vimにcoffeeファイルタイプを認識させる
-au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
-" インデントを設定
-autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" vim-visualstar {{{
-" ==============================================================================
-if neobundle#tap('vim-visualstar')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" opencl.vim {{{
-" ==============================================================================
-if neobundle#tap('opencl.vim')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" vim-json {{{
-" ==============================================================================
-if neobundle#tap('vim-json')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" auto-pairs {{{
-" ==============================================================================
-if neobundle#tap('auto-pairs')
-
-let g:AutoPairsShortcutToggle = '' " disable
-let g:AutoPairsShortcutJump = '' " disable
-let g:AutoPairsShortcutBackInsert = '' " disable
-let g:AutoPairsShortcutFastWrap = '<C-e>'
-let g:AutoPairsMapCR = 0
-imap <silent><CR> <CR><Plug>AutoPairsReturn
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" committia.vim {{{
-" ==============================================================================
-if neobundle#tap('committia.vim')
-
-let g:committia_hooks = {}
-function! g:committia_hooks.edit_open(info)
-    " Additional settings
-    setlocal spell
-
-    " If no commit message, start with insert mode
-    if a:info.vcs ==# 'git' && getline(1) ==# ''
-        startinsert
-    end
-
-    " Scroll the diff window from insert mode
-    " Map <C-n> and <C-p>
-    imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
-    imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
-
-endfunction
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" clever-f.vim {{{
-" ==============================================================================
-if neobundle#tap('clever-f.vim')
-
-let g:clever_f_across_no_line=1
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" quickfixstatus {{{
-" ==============================================================================
-if neobundle#tap('quickfixstatus')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" typescript-vim {{{
-" ==============================================================================
-if neobundle#tap('typescript-vim')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" vim-quickrun {{{
-" ==============================================================================
-if neobundle#tap('vim-quickrun')
-
-let g:quickrun_no_default_key_mappings = 1
-"QuickRunのキーマップ
-nnoremap <silent><F5> :<C-u>QuickRun<CR>
-vnoremap <silent><F5> :QuickRun<CR>
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
 " vimproc.vim {{{
 " ==============================================================================
 if neobundle#tap('vimproc.vim')
 
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" vim-colors-solarized {{{
-" ==============================================================================
-if neobundle#tap('vim-colors-solarized')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" tern_for_vim {{{
-" ==============================================================================
-if neobundle#tap('tern_for_vim')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" unite-outline {{{
-" ==============================================================================
-if neobundle#tap('unite-outline')
-
-nnoremap <silent> <Space>o :<C-u>Unite -wrap -vertical -no-quit outline<CR>
 
 call neobundle#untap()
 endif
@@ -457,9 +612,58 @@ call neobundle#untap()
 endif
 " }}}
 " ==============================================================================
-" tsuquyomi {{{
+" previm {{{
 " ==============================================================================
-if neobundle#tap('tsuquyomi')
+if neobundle#tap('previm')
+
+Autocmd BufRead,BufNewFile *.{md,mkdn} set filetype=markdown
+let g:previm_open_cmd = ''
+nnoremap [previm] <Nop>
+nmap <Space>p [previm]
+nnoremap <silent> [previm]o :<C-u>PrevimOpen<CR>
+nnoremap <silent> [previm]r :call previm#refresh()<CR>
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" vim-toml {{{
+" ==============================================================================
+if neobundle#tap('vim-toml')
+
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" auto-pairs {{{
+" ==============================================================================
+if neobundle#tap('auto-pairs')
+
+let g:AutoPairsShortcutToggle = '' " disable
+let g:AutoPairsShortcutJump = '' " disable
+let g:AutoPairsShortcutBackInsert = '' " disable
+let g:AutoPairsShortcutFastWrap = '<C-e>'
+let g:AutoPairsMapCR = 0
+imap <silent><CR> <CR><Plug>AutoPairsReturn
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" vim-hier {{{
+" ==============================================================================
+if neobundle#tap('vim-hier')
+
+let g:hier_enabled = 0
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" vim-qml {{{
+" ==============================================================================
+if neobundle#tap('vim-qml')
 
 
 call neobundle#untap()
@@ -498,55 +702,19 @@ call neobundle#untap()
 endif
 " }}}
 " ==============================================================================
-" vim-indent-guides {{{
+" typescript-vim {{{
 " ==============================================================================
-if neobundle#tap('vim-indent-guides')
-
-" インデントの深さに色を付ける
-let g:indent_guides_start_level=2
-let g:indent_guides_auto_colors=0
-let g:indent_guides_enable_on_vim_startup=0
-let g:indent_guides_color_change_percent=20
-let g:indent_guides_guide_size=1
-let g:indent_guides_space_guides=1
-
-hi IndentGuidesOdd  ctermbg=235
-hi IndentGuidesEven ctermbg=237
-au FileType coffee,ruby,javascript,python IndentGuidesEnable
-nmap <silent><Leader>ig <Plug>IndentGuidesToggle
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" neobundle.vim {{{
-" ==============================================================================
-if neobundle#tap('neobundle.vim')
+if neobundle#tap('typescript-vim')
 
 
 call neobundle#untap()
 endif
 " }}}
 " ==============================================================================
-" vim-go {{{
+" agit.vim {{{
 " ==============================================================================
-if neobundle#tap('vim-go')
+if neobundle#tap('agit.vim')
 
-let g:go_highlight_functions = 1
-let g:go_highlight_methods   = 1
-let g:go_highlight_structs   = 1
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" incsearch.vim {{{
-" ==============================================================================
-if neobundle#tap('incsearch.vim')
-
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
 
 call neobundle#untap()
 endif
@@ -561,45 +729,6 @@ let g:caw_no_default_keymappings = 1
 " キーマッピング
 nmap <silent> ,/ <Plug>(caw:i:toggle)
 vmap <silent> ,/ <Plug>(caw:i:toggle)
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" opengl.vim {{{
-" ==============================================================================
-if neobundle#tap('opengl.vim')
-
-Autocmd BufRead *.c,*.h,*.cpp,*.hpp call MyOpenGLCheck()
-function! MyOpenGLCheck()
-  if search('^#include <gl.*\.h>','n') > 0 ||
-  \  search('^#include <GL.*/gl.*\.h>', 'n') > 0 ||
-  \  search('^#include <EGL/egl.h>', 'n') > 0
-    NeoBundleSource opengl.vim
-  endif
-endfunction
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" vim-gitgutter {{{
-" ==============================================================================
-if neobundle#tap('vim-gitgutter')
-
-let g:gitgutter_sign_column_always = 1
-let g:gitgutter_sign_added = '✚'
-let g:gitgutter_sign_modified = '➜'
-let g:gitgutter_sign_removed = '_'
-let g:gitgutter_realtime = 0
-let g:gitgutter_eager = 1
-let g:gitgutter_max_signs = 2000
-let g:gitgutter_escape_grep = 1
-let g:gitgutter_highlight_lines = 0
-
-nnoremap <silent> [h :<C-u>GitGutterPrevHunk<CR>
-nnoremap <silent> ]h :<C-u>GitGutterNextHunk<CR>
-nnoremap <silent> gA :<C-u>GitGutterStageHunk<CR>
 
 call neobundle#untap()
 endif
@@ -626,146 +755,43 @@ call neobundle#untap()
 endif
 " }}}
 " ==============================================================================
-" vim-toml {{{
-" ==============================================================================
-if neobundle#tap('vim-toml')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" jedi-vim {{{
-" ==============================================================================
-if neobundle#tap('jedi-vim')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" agit.vim {{{
-" ==============================================================================
-if neobundle#tap('agit.vim')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" next-alter.vim {{{
-" ==============================================================================
-if neobundle#tap('next-alter.vim')
-
-let g:next_alter#do_not_create_not_exist_pair_extension = 2
-" key is file extension, value is alternate file extension.
-let g:next_alter#pair_extension = {
-            \ 'c'   : [ 'h' ],
-            \ 'C'   : [ 'H' ],
-            \ 'cc'  : [ 'h' ],
-            \ 'CC'  : [ 'H', 'h'],
-            \ 'cpp' : [ 'h', 'hpp' ],
-            \ 'CPP' : [ 'H', 'HPP' ],
-            \ 'cxx' : [ 'h', 'hpp' ],
-            \ 'CXX' : [ 'H', 'HPP' ],
-            \ 'h'   : [ 'c', 'cpp', 'cxx' ],
-            \ 'H'   : [ 'C', 'CPP', 'CXX' ],
-            \ 'hpp' : [ 'cpp', 'cxx'],
-            \ 'HPP' : [ 'CPP', 'CXX'],
-            \ }
-
-" this list shows search directory to find alternate file.
-let g:next_alter#search_dir = [ '.' , '..', './include', '../include' ]
-
-" this is used when it opens alternate file buffer.
-let g:next_alter#open_option = 'vertical topleft'
-
-" key mapping
-nnoremap <silent> <Space>a :<C-u>OpenNAlter<CR>
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" vim-fugitive {{{
-" ==============================================================================
-if neobundle#tap('vim-fugitive')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" previm {{{
-" ==============================================================================
-if neobundle#tap('previm')
-
-Autocmd BufRead,BufNewFile *.{md,mkdn} set filetype=markdown
-let g:previm_open_cmd = ''
-nnoremap [previm] <Nop>
-nmap <Space>p [previm]
-nnoremap <silent> [previm]o :<C-u>PrevimOpen<CR>
-nnoremap <silent> [previm]r :call previm#refresh()<CR>
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" rust.vim {{{
-" ==============================================================================
-if neobundle#tap('rust.vim')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" open-browser.vim {{{
-" ==============================================================================
-if neobundle#tap('open-browser.vim')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" vim-wayland {{{
-" ==============================================================================
-if neobundle#tap('vim-wayland')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" accelerated-jk {{{
-" ==============================================================================
-if neobundle#tap('accelerated-jk')
-
-" jkを加速する
-" conservative deceleration
-let g:accelerated_jk_enable_deceleration = 1
-nmap j <Plug>(accelerated_jk_gj)
-nmap k <Plug>(accelerated_jk_gk)
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" vim-table-mode {{{
-" ==============================================================================
-if neobundle#tap('vim-table-mode')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
 " vim-expand-region {{{
 " ==============================================================================
 if neobundle#tap('vim-expand-region')
 
 vmap <C-v> <Plug>(expand_region_expand)
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" clever-f.vim {{{
+" ==============================================================================
+if neobundle#tap('clever-f.vim')
+
+let g:clever_f_across_no_line=1
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" vim-quickrun {{{
+" ==============================================================================
+if neobundle#tap('vim-quickrun')
+
+let g:quickrun_no_default_key_mappings = 1
+"QuickRunのキーマップ
+nnoremap <silent><F5> :<C-u>QuickRun<CR>
+vnoremap <silent><F5> :QuickRun<CR>
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" vim-jade {{{
+" ==============================================================================
+if neobundle#tap('vim-jade')
+
 
 call neobundle#untap()
 endif
@@ -780,55 +806,27 @@ call neobundle#untap()
 endif
 " }}}
 " ==============================================================================
-" gapply.vim {{{
+" tsuquyomi {{{
 " ==============================================================================
-if neobundle#tap('gapply.vim')
+if neobundle#tap('tsuquyomi')
 
 
 call neobundle#untap()
 endif
 " }}}
 " ==============================================================================
-" vim-clang {{{
+" nerdtree {{{
 " ==============================================================================
-if neobundle#tap('vim-clang')
+if neobundle#tap('nerdtree')
 
-" disable auto completion for vim-clang
-let g:clang_auto = 0
-" default 'longest' can not work with neocomplete
-let g:clang_c_completeopt   = 'menuone'
-let g:clang_cpp_completeopt = 'menuone'
-
-if executable('clang-3.6')
-    let g:clang_exec = 'clang-3.6'
-elseif executable('clang-3.5')
-    let g:clang_exec = 'clang-3.5'
-elseif executable('clang-3.4')
-    let g:clang_exec = 'clang-3.4'
-else
-    let g:clang_exec = 'clang'
-endif
-
-if executable('clang-format-3.6')
-    let g:clang_format_exec = 'clang-format-3.6'
-elseif executable('clang-format-3.5')
-    let g:clang_format_exec = 'clang-format-3.5'
-elseif executable('clang-format-3.4')
-    let g:clang_format_exec = 'clang-format-3.4'
-else
-    let g:clang_exec = 'clang-format'
-endif
-
-let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" vim-js-indent {{{
-" ==============================================================================
-if neobundle#tap('vim-js-indent')
-
+augroup my_nerdtree_settings
+    autocmd!
+    " key mappings
+    nmap <silent> <Space>F :<C-u>NERDTreeToggle<CR>
+    " auto close when last buffer is NERDTree
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&
+            \ b:NERDTreeType == "primary") | q | endif
+augroup END
 
 call neobundle#untap()
 endif
@@ -843,11 +841,27 @@ call neobundle#untap()
 endif
 " }}}
 " ==============================================================================
-" vim-hier {{{
+" opengl.vim {{{
 " ==============================================================================
-if neobundle#tap('vim-hier')
+if neobundle#tap('opengl.vim')
 
-let g:hier_enabled = 0
+Autocmd BufRead *.c,*.h,*.cpp,*.hpp call MyOpenGLCheck()
+function! MyOpenGLCheck()
+  if search('^#include <gl.*\.h>','n') > 0 ||
+  \  search('^#include <GL.*/gl.*\.h>', 'n') > 0 ||
+  \  search('^#include <EGL/egl.h>', 'n') > 0
+    NeoBundleSource opengl.vim
+  endif
+endfunction
+
+call neobundle#untap()
+endif
+" }}}
+" ==============================================================================
+" rust.vim {{{
+" ==============================================================================
+if neobundle#tap('rust.vim')
+
 
 call neobundle#untap()
 endif
