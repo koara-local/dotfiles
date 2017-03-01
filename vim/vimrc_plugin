@@ -8,15 +8,6 @@ call neobundle#untap()
 endif
 " }}}
 " ==============================================================================
-" vim-js-indent {{{
-" ==============================================================================
-if neobundle#tap('vim-js-indent')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
 " accelerated-jk {{{
 " ==============================================================================
 if neobundle#tap('accelerated-jk')
@@ -26,19 +17,6 @@ if neobundle#tap('accelerated-jk')
 let g:accelerated_jk_enable_deceleration = 1
 nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" vim-coffee-script {{{
-" ==============================================================================
-if neobundle#tap('vim-coffee-script')
-
-" vimにcoffeeファイルタイプを認識させる
-au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
-" インデントを設定
-autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
 
 call neobundle#untap()
 endif
@@ -277,15 +255,6 @@ call neobundle#untap()
 endif
 " }}}
 " ==============================================================================
-" opencl.vim {{{
-" ==============================================================================
-if neobundle#tap('opencl.vim')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
 " vim-json {{{
 " ==============================================================================
 if neobundle#tap('vim-json')
@@ -384,24 +353,6 @@ let g:clang_format_exec = s:get_latest_clang_format('/usr/bin')
 
 let g:clang_c_options = '-std=c11'
 let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" gapply.vim {{{
-" ==============================================================================
-if neobundle#tap('gapply.vim')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" tern_for_vim {{{
-" ==============================================================================
-if neobundle#tap('tern_for_vim')
-
 
 call neobundle#untap()
 endif
@@ -661,15 +612,6 @@ call neobundle#untap()
 endif
 " }}}
 " ==============================================================================
-" vim-qml {{{
-" ==============================================================================
-if neobundle#tap('vim-qml')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
 " syntastic {{{
 " ==============================================================================
 if neobundle#tap('syntastic')
@@ -697,15 +639,6 @@ let g:syntastic_cpp_cpplint_thres = 5
 let g:syntastic_cpp_cpplint_args = '--verbose=3'
 
 nnoremap <silent> <Space>s :<C-u>SyntasticCheck cpplint<CR>
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" typescript-vim {{{
-" ==============================================================================
-if neobundle#tap('typescript-vim')
-
 
 call neobundle#untap()
 endif
@@ -797,24 +730,6 @@ call neobundle#untap()
 endif
 " }}}
 " ==============================================================================
-" javascript-libraries-syntax.vim {{{
-" ==============================================================================
-if neobundle#tap('javascript-libraries-syntax.vim')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" tsuquyomi {{{
-" ==============================================================================
-if neobundle#tap('tsuquyomi')
-
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
 " nerdtree {{{
 " ==============================================================================
 if neobundle#tap('nerdtree')
@@ -827,15 +742,6 @@ augroup my_nerdtree_settings
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&
             \ b:NERDTreeType == "primary") | q | endif
 augroup END
-
-call neobundle#untap()
-endif
-" }}}
-" ==============================================================================
-" glsl.vim {{{
-" ==============================================================================
-if neobundle#tap('glsl.vim')
-
 
 call neobundle#untap()
 endif
