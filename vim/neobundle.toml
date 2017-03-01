@@ -87,9 +87,6 @@ repository = 'rhysd/committia.vim'
 [[plugins]]
 repository = 'cohama/agit.vim'
 
-[[plugins]]
-repository = 'AndrewRadev/gapply.vim'
-
 # indent guide
 [[plugins]]
 repository = 'nathanaelkane/vim-indent-guides'
@@ -110,8 +107,8 @@ mappings = [['x', '*'], ['x' , '#'], ['x', 'g*'], ['x', 'g#']]
 repository = 'haya14busa/incsearch.vim'
 
 # SYNTAX CHECK
-[[plugins]]
-repository = 'scrooloose/syntastic'
+#[[plugins]]
+#repository = 'scrooloose/syntastic'
 
 # STATUS LINE
 [[plugins]]
@@ -130,20 +127,10 @@ filetypes  =  ['c', 'cpp']
 [[plugins]]
 repository = 'fatih/vim-go'
 
-# QML
-[[plugins]]
-repository = 'peterhoeg/vim-qml'
-filetypes  = 'qml'
-
 # JSON
 [[plugins]]
 repository = 'elzr/vim-json'
 filetypes  = 'json'
-
-# Open CL (*.cl)
-[[plugins]]
-repository = 'frasercrmck/opencl.vim'
-filetypes  = 'opencl'
 
 # Open GL
 [[plugins]]
@@ -182,42 +169,7 @@ filetypes  = 'markdown'
 repository = 'dhruvasagar/vim-table-mode'
 filetypes  = 'markdown'
 
-# JavaScript + AltJS
-[[plugins]]
-repository = 'othree/javascript-libraries-syntax.vim'
-filetypes  = ['javascript', 'coffee', 'typescript']
-
-[[plugins]]
-repository = 'jason0x43/vim-js-indent'
-filetypes  = ['javascript', 'typescript']
-
-# JavaScript only
-[[plugins]]
-repository = 'marijnh/tern_for_vim'
-filetypes  = 'javascript'
-    [plugins.build]
-    others = 'npm install'
-
-# CoffeeScript
-[[plugins]]
-repository = 'kchmck/vim-coffee-script'
-filetypes  = 'coffee'
-
-# TypeScript
-[[plugins]]
-repository = 'leafgarland/typescript-vim'
-filetypes  = 'typescript'
-
-[[plugins]]
-repository = 'Quramy/tsuquyomi'
-filetypes  = 'typescript'
-
 # TOML
 [[plugins]]
 repository = 'cespare/vim-toml'
 filetypes  = 'toml'
-
-# Jade templetes
-[[plugins]]
-repository = 'digitaltoad/vim-jade'
-filetypes  = 'jade'
