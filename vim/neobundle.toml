@@ -119,9 +119,12 @@ repository = 'itchyny/lightline.vim'
 repository = 'thinca/vim-quickrun'
 
 # C/C++
+# [[plugins]]
+# repository = 'justmao945/vim-clang'
+# filetypes  =  ['c', 'cpp']
+
 [[plugins]]
-repository = 'justmao945/vim-clang'
-filetypes  =  ['c', 'cpp']
+repository = 'vim-jp/cpp-vim'
 
 # Go
 [[plugins]]
